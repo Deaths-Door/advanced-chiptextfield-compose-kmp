@@ -125,7 +125,7 @@ ChipTextField(
 fun Avatar(chip: AvatarChip, modifier: Modifier = Modifier) { /*...*/ }
 ```
 
-![](/images/screenshot_avatar.jpg)
+![](/images/screenshot_avatar.png)
 
 
 Please note that the examples provided here are simplified and serve as a starting point. For comprehensive documentation of the crate, please visit the crate documentation for a better understanding of the crate's functionalities and APIs.
