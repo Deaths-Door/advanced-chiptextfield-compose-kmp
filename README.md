@@ -31,7 +31,104 @@ ChipTextField(
 )
 
 ```
+
 ![](/images/screenshot_filled.jpg)
 
 ### Simplified Version if not Caring about TextField Value
+
 For situations where you don't need to explicitly track the value of the text field, use this simplified code:
+
+```kotlin
+val state = rememberChipTextFieldState<Chip>()
+ChipTextField(
+    state = state,
+    onSubmit = ::Chip,
+)
+```
+
+### Outlined Style
+
+To create an `OutlinedChipTextField` with an outlined style, use the following code:
+
+```kotlin
+val state = rememberChipTextFieldState<Chip>()
+OutlinedChipTextField(
+    state = state,
+    onSubmit = ::Chip,
+)
+```
+
+![](/images/screenshot_outlined.jpg)
+
+### Classic Underline Style
+
+For a classic underline style, apply additional styling to the `ChipTextField`:
+
+```kotlin
+val state = rememberChipTextFieldState<Chip>()
+ChipTextField(
+    state = state,
+    onSubmit = ::Chip,
+    colors = TextFieldDefaults.textFieldColors(
+        backgroundColor = Color.Transparent,
+    ),
+    contentPadding = PaddingValues(bottom = 8.dp),
+)
+```
+
+![](/images/screenshot_light.png)
+
+## Checkable Chips
+
+Create checkable chips using the `CheckableChip` class:
+
+```kotlin
+class CheckableChip(text: String, isChecked: Boolean = false) : Chip(text) {
+    var isChecked by mutableStateOf(isChecked)
+}
+
+val state = rememberChipTextFieldState(
+    chips = listOf(CheckableChip(""), /*...*/),
+)
+BasicChipTextField(
+    state = state,
+    onSubmit = { null },
+    readOnly = true, // Disable editing
+    chipLeadingIcon = { chip -> CheckIcon(chip) }, // Show check icon if checked
+    chipTrailingIcon = {}, // Hide default close button
+    onChipClick = { chip -> chip.isChecked = !chip.isChecked }
+)
+
+@Composable
+fun CheckIcon(chip: CheckableChip, modifier: Modifier = Modifier) { /*...*/ }
+```
+
+![](/images/screenshot_checkable.jpg)
+
+
+### Avatar Chips
+
+Create avatar chips with the `AvatarChip` class:
+
+
+```kotlin
+class AvatarChip(text: String, val avatarUrl: String) : Chip(text)
+
+val state = rememberChipTextFieldState<AvatarChip>()
+ChipTextField(
+    state = state,
+    onSubmit = { AvatarChip(it.text, AVATAR_URL) },
+    chipLeadingIcon = { chip -> Avatar(chip) } // Load and display avatar
+)
+
+@Composable
+fun Avatar(chip: AvatarChip, modifier: Modifier = Modifier) { /*...*/ }
+```
+
+![](/images/screenshot_avatar.jpg)
+
+
+Please note that the examples provided here are simplified and serve as a starting point. For comprehensive documentation of the crate, please visit the crate documentation for a better understanding of the crate's functionalities and APIs.
+
+## Contributing
+Contributions are welcome! If you find any issues or have suggestions for improvement, please open an issue or submit a pull request.
