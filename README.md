@@ -4,13 +4,13 @@ Discover a dynamic Editable Chip Text Field implementation for Kotlin Multiplatf
 
 # Note
 
-This library offers an enhanced version of [OG Repo](https://github.com/dokar3/ChipTextField/tree/main), now expanded to include Kotlin Multiplatform (KMP) compatibility alongside the improved design system of Jetpack Compose M3, which builds upon the foundations of M2.
+This library offers an enhanced version of [Original Repository](https://github.com/dokar3/ChipTextField/tree/main), now expanded to include Kotlin Multiplatform (KMP) compatibility alongside the improved design system of Jetpack Compose M3, which builds upon the foundations of M2.
 
 **Key Enhancements:**
 
 * **Kotlin Multiplatform Support:** This library now extends beyond Android, bringing the power of Jetpack Compose M3 design to both Android and other platforms, thanks to Kotlin Multiplatform (KMP) capabilities.
 * **M3 Design Evolution:** Building upon the success of M2, this library incorporates the refined design principles of Jetpack Compose M3, enhancing user interface aesthetics and functionality.
-* **Seamless Transition:** Integrate the library seamlessly into your existing projects using the [OG Repo](https://github.com/dokar3/ChipTextField/tree/main), whether they're based on Android M2 Compose or a multiplatform architecture.
+* **Seamless Transition:** Integrate the library seamlessly into your existing projects that use the [Original Repository](https://github.com/dokar3/ChipTextField/tree/main)
 
 # Usage
 
