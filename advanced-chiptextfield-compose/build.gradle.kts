@@ -1,60 +1,50 @@
+import com.deathsdoor.configuration.Configuration
+import com.vanniktech.maven.publish.SonatypeHost
+
 plugins {
     kotlin("multiplatform")
     kotlin("native.cocoapods")
-
     id("com.android.library")
     id("org.jetbrains.compose")
+    id("com.vanniktech.maven.publish")
 }
 
-object Metadata {
-    const val javaVersion = "11"
-    val asJavaVersionEnum = JavaVersion.values().find { it.name.endsWith(javaVersion) }
-    const val minSDK = 21
-    const val maxSDK = 33
-
-    const val iosDeploymentTarget = "14.1"
-
-    const val namespace = "com.deathsdoor.advancedchiptextfield"
-    const val module = "advancedchiptextfield"
-    const val version = "0.1.0"
-    const val description = "Discover a dynamic Editable Chip Text Field implementation for Kotlin Multiplatform (KMP) applications using Jetpack Compose. This repository showcases a versatile UI component that enables users to create chips by typing and converting text entries."
-    const val url = "https://github.com/Deaths-Door/advanced-chiptextfield-compose-kmp"
-}
-
+@OptIn(org.jetbrains.kotlin.gradle.ExperimentalKotlinGradlePluginApi::class)
 kotlin {
+    targetHierarchy.default()
+
     android {
         compilations.all {
-            kotlinOptions {
-                jvmTarget = Metadata.javaVersion
-            }
+            kotlinOptions.jvmTarget = Configuration.android.javaVersion
         }
-    }
-
-    js(IR) {
-        browser()
-        nodejs()
-        binaries.executable()
     }
 
     iosX64()
     iosArm64()
     iosSimulatorArm64()
 
+    jvm()
+
+    js(IR) {
+        binaries.executable()
+        browser()
+        nodejs()
+    }
 
     cocoapods {
-        summary = Metadata.description
-        homepage = Metadata.url
-        version = Metadata.version
-        ios.deploymentTarget = Metadata.iosDeploymentTarget
+        version = Configuration.versionName
+        homepage =  Configuration.homepage
+        summary = Configuration.description
+        ios.deploymentTarget = Configuration.ios.deploymentTarget
+
         framework {
-            baseName = Metadata.module
+            baseName = Configuration.ios.baseName
         }
     }
     
     sourceSets {
         val commonMain by getting {
             dependencies {
-                //Basic Jetpack compose
                 implementation(compose.ui)
                 implementation(compose.foundation)
                 implementation(compose.material3)
@@ -65,12 +55,47 @@ kotlin {
 }
 
 android {
-    namespace = Metadata.namespace
-    compileSdk = Metadata.maxSDK
+    namespace = Configuration.namespace
+    compileSdk = Configuration.android.maxSdk
 
-    defaultConfig.minSdk = Metadata.minSDK
-    defaultConfig.targetSdk = Metadata.maxSDK
+    defaultConfig.minSdk = Configuration.android.minSdk
 
-    compileOptions.sourceCompatibility = Metadata.asJavaVersionEnum
-    compileOptions.targetCompatibility = Metadata.asJavaVersionEnum
+    compileOptions.sourceCompatibility = Configuration.android.asJavaVersionEnum
+    compileOptions.targetCompatibility = Configuration.android.asJavaVersionEnum
+
+    buildTypes.getByName("release"){
+        isMinifyEnabled = true
+    }
+}
+
+mavenPublishing {
+    publishToMavenCentral(SonatypeHost.S01, automaticRelease = true)
+    signAllPublications()
+
+    coordinates(Configuration.namespace, Configuration.publish.artifact, Configuration.versionName)
+
+    pom {
+        name.set(Configuration.packageName)
+        description.set(Configuration.description)
+        inceptionYear.set("2023")
+        url.set(Configuration.homepage)
+        licenses {
+            license {
+                name.set("The Apache License, Version 2.0")
+                url.set("http://www.apache.org/licenses/LICENSE-2.0.txt")
+                distribution.set("http://www.apache.org/licenses/LICENSE-2.0.txt")
+            }
+        }
+        developers {
+            developer {
+                name.set(Configuration.publish.userName)
+                url.set(Configuration.publish.userNameHomePage)
+            }
+        }
+        scm {
+            url.set(Configuration.homepage)
+            connection.set(Configuration.publish.connection)
+            developerConnection.set(Configuration.publish.developerConnection)
+        }
+    }
 }

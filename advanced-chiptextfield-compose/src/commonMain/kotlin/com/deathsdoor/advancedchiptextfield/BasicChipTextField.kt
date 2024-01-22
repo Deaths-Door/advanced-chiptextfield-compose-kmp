@@ -39,7 +39,6 @@ import androidx.compose.ui.draw.clip
 import androidx.compose.ui.focus.FocusRequester
 import androidx.compose.ui.focus.focusRequester
 import androidx.compose.ui.focus.onFocusChanged
-import androidx.compose.ui.graphics.Brush
 import androidx.compose.ui.graphics.SolidColor
 import androidx.compose.ui.input.key.Key
 import androidx.compose.ui.input.key.KeyEventType
@@ -75,7 +74,6 @@ import kotlinx.coroutines.launch
  * @param keyboardOptions See [BasicTextField] for the details.
  * @param textStyle Text style, also apply to text in chips.
  * @param chipStyle Chip style, include shape, text color, background color, etc. See [ChipStyle].
- * @param chipVerticalSpacing Vertical spacing between chips.
  * @param chipHorizontalSpacing Horizontal spacing between chips.
  * @param chipLeadingIcon Leading chip icon, nothing will be displayed by default.
  * @param chipTrailingIcon Trailing chip icon, by default, a [CloseButton] will be displayed.
@@ -151,7 +149,6 @@ fun <T : Chip> BasicChipTextField(
  * @param keyboardOptions See [BasicTextField] for the details.
  * @param textStyle Text style, also apply to text in chips.
  * @param chipStyle Chip style, include shape, text color, background color, etc. See [ChipStyle].
- * @param chipVerticalSpacing Vertical spacing between chips.
  * @param chipHorizontalSpacing Horizontal spacing between chips.
  * @param chipLeadingIcon Leading chip icon, nothing will be displayed by default.
  * @param chipTrailingIcon Trailing chip icon, by default, a [CloseButton] will be displayed.
@@ -248,7 +245,6 @@ fun <T : Chip> BasicChipTextField(
  * @param keyboardOptions See [BasicTextField] for the details.
  * @param textStyle Text style, also apply to text in chips.
  * @param chipStyle Chip style, include shape, text color, background color, etc. See [ChipStyle].
- * @param chipVerticalSpacing Vertical spacing between chips.
  * @param chipHorizontalSpacing Horizontal spacing between chips.
  * @param chipLeadingIcon Leading chip icon, nothing will be displayed by default.
  * @param chipTrailingIcon Trailing chip icon, by default, a [CloseButton] will be displayed.
@@ -618,7 +614,7 @@ private fun <T : Chip> Input(
             }
         ),
         interactionSource = interactionSource,
-        //cursorBrush = SolidColor(colors.cursorColor(isError).value),
+       // cursorBrush = SolidColor(colors.cursorColor(isError).value),
     )
 }
 
