@@ -72,7 +72,7 @@ mavenPublishing {
     publishToMavenCentral(SonatypeHost.S01, automaticRelease = true)
     signAllPublications()
 
-    coordinates(Configuration.namespace, Configuration.publish.artifact, Configuration.versionName)
+    coordinates("io.github.Deaths-Door", Configuration.publish.artifact, Configuration.versionName)
 
     pom {
         name.set(Configuration.packageName)
