@@ -9,7 +9,7 @@ object Configuration {
     const val namespace = "com.deathsdoor.advancedchiptextfield"
     const val description = "Discover a dynamic Editable Chip Text Field implementation for Kotlin Multiplatform Mobile (KMM) applications using Jetpack Compose. This repository showcases a versatile UI component that enables users to create chips by typing and converting text entries. Harnessing the power of Jetpack Compose, this project provides a cross-platform solution for seamlessly managing chip-like elements without the need for images or complex UI elements.\n"
     const val homepage = "https://github.com/${publish.userName}/advanced-chiptextfield-compose-kmp"
-
+    
     const val versionName = "1.0.0"
     val versionCode = versionName
         .split(".")

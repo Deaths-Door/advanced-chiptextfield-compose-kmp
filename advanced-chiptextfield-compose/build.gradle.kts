@@ -17,6 +17,8 @@ kotlin {
         compilations.all {
             kotlinOptions.jvmTarget = Configuration.android.javaVersion
         }
+        
+        publishLibraryVariants("release", "debug")
     }
 
     iosX64()
@@ -69,13 +71,15 @@ android {
 }
 
 mavenPublishing {
-    publishToMavenCentral(SonatypeHost.S01 ,automaticRelease = true)
+    publishToMavenCentral(SonatypeHost.S01) //,automaticRelease = true)
     signAllPublications()
 
-    coordinates("io.github.deaths-door", Configuration.publish.artifact,Configuration.versionName)
+    // io.github.deaths-door.advancedchiptextfield
+    coordinates("io.github.deaths-door.advancedchiptextfield", "advancedchiptextfield"/* Configuration.publish.artifact*/,Configuration.versionName)
 
     pom {
-        name.set(Configuration.packageName)
+        name.set("advancedchiptextfield")
+        //name.set(Configuration.packageName)
         description.set(Configuration.description)
         inceptionYear.set("2023")
         url.set(Configuration.homepage)
