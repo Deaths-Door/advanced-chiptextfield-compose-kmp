@@ -75,7 +75,7 @@ mavenPublishing {
     signAllPublications()
 
     // io.github.deaths-door.advancedchiptextfield
-    coordinates("io.github.deaths-door.advancedchiptextfield", "advancedchiptextfield"/* Configuration.publish.artifact*/,Configuration.versionName)
+    coordinates("io.github.deaths-door.advancedchiptextfield", Configuration.publish.artifact,Configuration.versionName)
 
     pom {
         name.set("advancedchiptextfield")
