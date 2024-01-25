@@ -69,7 +69,7 @@ android {
 }
 
 mavenPublishing {
-    publishToMavenCentral(SonatypeHost.DEFAULT ,automaticRelease = true)
+    publishToMavenCentral(SonatypeHost.S01 ,automaticRelease = true)
     signAllPublications()
 
     coordinates("io.github.deaths-door", Configuration.publish.artifact,Configuration.versionName)
